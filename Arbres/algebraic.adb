@@ -244,4 +244,98 @@ package body algebraic is
 		end case;
 		return de;
 	end derive;
+	
+	function simplify (e: in expression) return expression is
+		s: expression;
+	
+		function simplify_un (e: in expression) return expression is
+			uop, uops: un_op;
+			s, esb, esb2: expression;
+		begin
+			g_un(e, uop, esb);
+			esb:= simplify(esb);
+			case uop is
+				when neg =>
+					if e_type(esb) = e_un then
+						g_un(esb, uops, esb2);
+						if uops=neg then
+							s:= esb2; -- -(-E) => E
+						else
+							s:= e;
+						end if;
+					elsif e_type(esb)=e_const and then g_const(esb)=0 then
+						s:= esb; -- -0 => 0
+					else
+						s:= b_un_op(uop, esb);
+					end if;
+				when sin =>
+					if e_type(esb)=e_const and then g_const(esb)=0 then
+						s:= esb; --sin(0) => 1
+					else
+						s:= b_un_op(uop, esb);
+					end if;
+				when cos =>
+					if e_type(esb)=e_const and then g_const(esb)=0 then
+						s:= b_constant(1); --cos(0) => 1
+					else
+						s:= b_un_op(uop, esb);
+					end if;
+				when exp =>
+					if e_type(esb)=e_const and then g_const(esb)=0 then
+						s:= b_constant(1);
+					else
+						s:= b_constant(uop, esb);
+					end if;
+				when ln =>
+					if e_type(esb)=e_const and then g_const(esb)=1 then
+						s:= b_constant(0);
+					else
+						s:= b_un_op(uop, esb);
+					end if;
+			end case;
+			return s;
+		end simplify_un;
+		
+		function simplify_bin(e: in expression) return expression is
+			bop: bin_op;
+			s, esb1, esb2: expression;
+		
+			function simplify_add(esb1, esb2: in expression) return expression is
+				s: expression; n1, n2: integer;
+			begin
+				if e_type(esb1)=e_const and then g_const(esb1)=0 then
+					s:= esb2;
+				elsif e_type(esb2)=e_const and then g_const(esb2)=0 then
+					s:= esb1;
+				elsif e_type(esb1)=e_const and then e_type(esb2)=e_const then
+					n1:= g_const(esb1); n2:= g_const(esb2);
+					s:= b_constant(n1+n2);
+				else
+					s:= b_bin_op(add, esb1, esb2);
+				end if;
+				return s;
+			end simplify_add;
+		
+		begin
+			g_bin(e, bop, esb1, esb2);
+			esb1:= simplify(esb1);
+			esb2:= simplify(esb2);
+			case bop is
+				when add => s:= simplify_add (esb1, esb2);
+				when sub => s:= simplify_sub (esb1, esb2);
+				when prod=> s:= simplify_prod(esb1, esb2);
+				when quot=> s:= simplify_quot(esb1, esb2);
+				when power=>s:= simplify_power(esb1,esb2);
+			end case;
+			return s;
+		end simplify_bin;
+	
+	begin
+		case e_type(e) is
+			when e_null | e_const | e_var => s:= e;
+			when e_un =>  s:= simplify_un (e);
+			when e_bin => s:= simplify_bin (e);
+		end case;
+		return s;
+	end simplify;
 end algebraic;
