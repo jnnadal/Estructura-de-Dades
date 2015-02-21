@@ -89,15 +89,68 @@ package body algebraic is
 					get(f,c);
 					if c='g' then
 						return t=neg;
-					else rai
+					else raise syntax_error; end if;
+				else raise syntax_error; end if;	
 			elsif c='s' then
+				get(f,c);
+				if c='i' then
+					get(f,c);
+					if c='n' then
+						return t=sin;
+					else raise syntax_error; end if;
+				else raise syntax_error; end if;
 			elsif c='c' then
+				get(f,c);
+				if c='o' then
+					get(f,c);
+					if c='s' then
+						return t=cos;
+					else raise syntax_error; end if;
+				else raise syntax_error; end if;
 			elsif c='e' then
+				get(f,c);
+				if c='x' then
+					get(f,c);
+					if c='p' then
+						return t=exp;
+					else raise syntax_error; end if;
+				else return syntax_error; end if;
 			elsif c='l' then
-			else raise syntax_error;
-			end if;
+				get(f,c);
+				if c='n' then
+					return t=ln;
+				else raise syntax_error; end if;
+			else raise syntax_error; end if;
+		end sca_id;
 		
 		function scan_num return integer is
 		begin
 			return character'Val(c);
 		end if;
+	begin
+		get(f,c); read_expr(e);
+		if c/=';' then raise syntax_error; end if;
+	exception
+		when syntax_error => e:= b_null; raise;
+	end read;
+	
+	function derive (e: in expression; x: in character) return expression is
+		de: expression;
+		function derive_var (e: in expression; x: in character) return expression is
+			de: expression;
+		begin
+			if g_var(e)=x then de:= b_constant(1);
+						  else de:= b_constant(0);
+			end if;
+			return de;
+		end derive_var;
+	begin
+		case e_type(e) is
+			when e_null => de:= b_null;
+			when e_const => de:= b_constant(0);
+			when e_var => de:= derive_var(e, x);
+			when e_un => de:= derive_un (e, x);
+			when e_bin => de:= derive_bin(e,x);
+		end case;
+		return de;
+	end derive;

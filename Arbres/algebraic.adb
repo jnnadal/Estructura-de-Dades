@@ -136,6 +136,41 @@ package body algebraic is
 	
 	function derive (e: in expression; x: in character) return expression is
 		de: expression;
+		
+		function derive_var (e: in expression; x: in character) return expression is
+			de: expression;
+		begin
+			if g_var(e)=x then de:= b_constant(1);
+						  else de:= b_constant(0);
+			end if;
+			return de;
+		end derive_var;
+		
+		function derive_un (e: in expression; x: in character) return expression is
+			uop: un_op;
+			esb, de, desb: expression;
+		begin
+			g_un (e, uop, esb);
+			desb:= derive (esb, x);
+			case uop is
+				when neg =>
+					de:= b_un_op(neg, desb);
+				when sin =>
+					de:= b_un_op(cos, esb);
+					de:= b_bin_op(prod, de, desb);
+				when cos =>
+					de:= b_un_op(sin, esb);
+					de:= b_un_op(neg, de);
+					de:= b_bin_op(prod, de, desb);
+				when exp =>
+					de:= b_bin_op(prod, e, desb);
+				when ln =>
+					de:= b_constant(1);
+					de:= b_bin_op(quot, de, esb);
+					de:= b_bin_op(prod, de, desb);
+				end case;
+				return de;
+			end derive_un;
 	begin
 		case e_type(e) is
 			when e_null => de:= b_null;
