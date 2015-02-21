@@ -1,0 +1,14 @@
+
+.DS_Store
+
+*.adb~
+
+*.adb~
+
+*.ads~
+
+Arbres/algebraic.adb~
+
+Arbres/dexpressions.adb~
+
+Arbres/dexpressions.ads~
