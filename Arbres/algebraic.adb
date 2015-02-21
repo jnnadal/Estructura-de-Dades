@@ -315,6 +315,77 @@ package body algebraic is
 				end if;
 				return s;
 			end simplify_add;
+			
+			function simplify_sub(esb1, esb2: in expression) return expression is
+				s: expression; n1, n2: integer;
+			begin
+				if e_type(esb2)=e_const and then g_const(esb2)=0 then
+					s:= esb1;
+				elsif e_type(esb1)=e_const and then g_const(esb1)=0 then
+					s:= esb2;
+				elsif e_type(esb1)=e_const and e_type(esb2)=e_const then
+					n1:= g_const(esb1); n2:= g_const(esb2);
+					n1:= n1-n2;
+					if n1>0 then s:= b_constant(n1);
+							else s:= b_constant(-n1); s:= b_un_op(neg, s);
+					end if;
+				else
+					s:= b_bin_op(sub, esb1, esb2);
+				end if;
+				return s;
+			end simplify_bin;
+			
+			function simplify_prod(esb1, esb2: in expression) return expression is
+				s: expression; n1, n2: integer;
+			begin
+				if e_type(esb1)=e_const and then g_const(esb1)=0 then
+					s:= esb1;
+				elsif e_type(esb2)=e_const and then g_const(esb2)=0 then
+					s:= esb2;
+				elsif e_type(esb1)=e_const and then g_const(esb1)=1 then
+					s:= esb2;
+				elsif e_type(esb2)=e_const and then g_const(esb2)=1 then
+					s:= esb1;
+				elsif e_type(esb1)=e_const and then g_const(esb2)=e_const then
+					n1:= g_const(esb1); n2:=g_const(esb2);
+					s:=b_constant(n1*n2);
+				else
+					s:= b_bin_op(prod, esb1, esb2);
+				end if;
+				return s;
+			end simplify_prod;
+			
+			function simplify_quot(esb1, esb2: in expression) return expression is
+				s: expression;
+			begin
+				if e_type(esb1)=e_const and then g_const(esb1)=0 then
+					s:= esb1;
+				elsif e_type(esb2)=e_const and then g_const(esb2)=1 then
+					s:= esb1;
+				elsif esb1=esb2 then
+					s:= b_constant(1);
+				else
+					s:= b_bin_op(quot, esb1, esb2);
+				end if;
+				return s;
+			end simplify_quot;
+			
+			function simplify_power(esb1, esb2: in expression) return expression is
+				s: expression;
+			begin
+				if e_type(esb1)=e_const and then g_const(esb1)=0 then
+					s:= esb1;
+				elsif e_type(esb2)=e_const and then g_const(esb2)=0 then
+					s:= b_constant(1);
+				elsif e_type(esb1)=e_const and then g_const(esb1)=1 then
+					s:= esb1;
+				elsif e_type(esb2)=e_const and then g_const(esb2)=1 then
+					s:= esb1;
+				else
+					s:= b_bin_op(power, esb1, esb2);
+				end if;
+				return s;
+			end simplify_power;
 		
 		begin
 			g_bin(e, bop, esb1, esb2);
@@ -338,4 +409,21 @@ package body algebraic is
 		end case;
 		return s;
 	end simplify;
+	
+	procedure write (f: in file_type; e: in expression) is
+		procedure write0(f: in file_type; e: in expression) is
+			pr: boolean;
+			uop: un_op;
+			bop: bin_op;
+			esb, esb1, esb2: expression;
+		begin
+			case e_type(e) is
+				when e_null => null;
+				when e_const => put_const(f, integer'image(g_const(e)));
+				when e_var => put(f, g_var(e));
+				when e_un =>
+					g_un (e, uop, esb);
+					put_uop(f, uop);
+					pr:= parenth_req_un(e);
+					
 end algebraic;
