@@ -10,7 +10,7 @@ package dexpressions is
 	function b_constant (n: in integer)                        return expression;
 	function b_var      (x: in character)                      return expression;
 	function b_un_op    (op: in un_op; esb: in expression)     return expression;
-	function b_bin_op   (op: in bin_op; e1, e2: in expression) return expression;
+	function b_bin_op   (op: in bin_op; esb1, esb2: in expression) return expression;
 	
 	--Operacions per llegir components
 	function e_type (e: in expression) return expression_type;

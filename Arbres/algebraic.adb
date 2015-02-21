@@ -1,5 +1,5 @@
 package body algebraic is
-	procedure read (f: in_file; e: out expression) is
+	procedure read (f: file_type; e: out expression) is
 		c: character;
 		procedure read_expr (e: out expression);
 		procedure read_term (e: out expression);
@@ -88,7 +88,7 @@ package body algebraic is
 				if c='e' then
 					get(f,c);
 					if c='g' then
-						return t=neg;
+						return neg;
 					else raise syntax_error; end if;
 				else raise syntax_error; end if;	
 			elsif c='s' then
@@ -96,7 +96,7 @@ package body algebraic is
 				if c='i' then
 					get(f,c);
 					if c='n' then
-						return t=sin;
+						return sin;
 					else raise syntax_error; end if;
 				else raise syntax_error; end if;
 			elsif c='c' then
@@ -104,7 +104,7 @@ package body algebraic is
 				if c='o' then
 					get(f,c);
 					if c='s' then
-						return t=cos;
+						return cos;
 					else raise syntax_error; end if;
 				else raise syntax_error; end if;
 			elsif c='e' then
@@ -112,21 +112,21 @@ package body algebraic is
 				if c='x' then
 					get(f,c);
 					if c='p' then
-						return t=exp;
+						return exp;
 					else raise syntax_error; end if;
-				else return syntax_error; end if;
+				else raise syntax_error; end if;
 			elsif c='l' then
 				get(f,c);
 				if c='n' then
-					return t=ln;
+					return ln;
 				else raise syntax_error; end if;
 			else raise syntax_error; end if;
-		end sca_id;
+		end scan_id;
 		
 		function scan_num return integer is
 		begin
-			return character'Val(c);
-		end if;
+			return character'pos(c);
+		end scan_num;
 	begin
 		get(f,c); read_expr(e);
 		if c/=';' then raise syntax_error; end if;
@@ -168,9 +168,72 @@ package body algebraic is
 					de:= b_constant(1);
 					de:= b_bin_op(quot, de, esb);
 					de:= b_bin_op(prod, de, desb);
+			end case;
+			return de;
+		end derive_un;
+		
+		function derive_bin (e: in expression; x: in character) return expression is
+			bop:              bin_op;
+			esb1, esb2:       expression;
+			de, desb1, desb2: expression;
+			a, b, c, d:       expression;	
+			
+			function contains(e: in expression; x: in character) return boolean is
+				cont:            boolean;
+				uop:             un_op;
+				bop:             bin_op;
+				esb, esb1, esb2: expression;
+			begin
+				case e_type(e) is
+					when e_null | e_const =>
+						cont:= false;
+					when e_var =>
+						cont:= g_var(e) = x;
+					when e_un =>
+						g_un (e, uop, esb);
+						cont:= contains(esb, x);
+					when e_bin =>
+						g_bin(e, bop, esb1, esb2);
+						cont:= contains(esb1, x) and then contains(esb2, x);
 				end case;
-				return de;
-			end derive_un;
+				return cont;
+			end contains;
+		begin
+			g_bin(e, bop, esb1, esb2);
+			desb1:= derive(esb1, x);
+			desb2:= derive(esb2, x);
+			case bop is
+				when add =>
+					de:= b_bin_op(add, desb1, desb2);
+				when sub =>
+					de:= b_bin_op(sub, desb1, desb2);
+				when prod =>
+					a:= b_bin_op(prod, desb1, esb2);
+					b:= b_bin_op(prod, desb2, esb1);
+					de:= b_bin_op(add, a, b);
+				when quot =>
+					a:= b_bin_op(prod, desb1, esb2);
+					b:= b_bin_op(prod, desb2, esb1);
+					c:= b_bin_op(sub, a, b);
+					d:= b_constant(2);
+					d:= b_bin_op(power, esb2, d);
+					de:= b_bin_op(quot, c, d);
+				when power =>
+					if not contains(esb2, x) then
+						a:= b_constant(1);
+						a:= b_bin_op(sub, esb2, a);
+						a:= b_bin_op(power, esb1, a);
+						a:= b_bin_op(prod, esb2, a);
+						de:= b_bin_op(prod, a, desb1);
+					else --f(x)^g(x) = exp(ln(f(x)^g(x)) = exp(g(x)*ln(f(x)))
+						a:= b_un_op(ln, esb1);
+						a:= b_bin_op(prod, esb2, a);
+						a:= b_un_op(exp, a);
+						de:= derive(a,x);
+					end if;
+			end case;
+			return de;
+		end derive_bin;
 	begin
 		case e_type(e) is
 			when e_null => de:= b_null;
@@ -181,3 +244,4 @@ package body algebraic is
 		end case;
 		return de;
 	end derive;
+end algebraic;

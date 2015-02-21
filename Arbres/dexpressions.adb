@@ -2,7 +2,7 @@ package body dexpressions is
 	function b_null return expression is
 		p: pnode;
 	begin
-		p:= new node'(e_null);
+		p:= new node(e_null);
 		return p;
 	end b_null;
 	
@@ -41,7 +41,7 @@ package body dexpressions is
 	
 	function g_const (e: in expression) return integer is
 	begin
-		return e_val;
+		return e.val;
 	end g_const;
 	
 	function g_var (e: in expression) return character is
