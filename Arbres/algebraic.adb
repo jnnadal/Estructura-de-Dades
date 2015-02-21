@@ -1,0 +1,148 @@
+package body algebraic is
+	procedure read (f: in_file; e: out expression) is
+		c: character;
+		procedure read_expr (e: out expression);
+		procedure read_term (e: out expression);
+		procedure read_factor(e: out expression);
+		procedure read_factor1(e: out expression);
+		function scan_id return un_op;
+		function scan_num return integer;
+		
+		procedure read_expr(e: out expression) is
+			neg_term: boolean;
+			op:       character;
+			e1:       expression;
+		begin
+			neg_term:= c= '-'; if neg_term then get(f,c); end if;
+			read_term(e);
+			if neg_term then e:= b_un_op(neg, e); end if;
+			while c='+' or c='-' loop
+				op:= c; get(f,c); read_term(e1);
+				if op='+' then 
+					e:= b_bin_op(add, e, e1);
+				else
+					e:= b_bin_op(sub, e, e1);
+				end if;
+			end loop;
+		end read_expr;
+		
+		procedure read_term (e: out expression) is
+			op: character;
+			e1: expression;
+		begin
+			read_factor(e);
+			while c='*' or c='/' loop
+				op:= c; get(f,c); read_factor(e1);
+				if op='*' then
+					e:= b_bin_op(prod, e, e1);
+				else
+					e:= b_bin_op(quot, e, e1);
+				end if;
+			end loop;
+		end read_term;
+		
+		procedure read_factor (e: out expression) is
+			e1: expression;
+		begin
+			read_factor1(e1);
+			if c='^' then
+				get(f,c); read_factor1(e1);
+				e:= b_bin_op(power, e, e1);
+			end if;
+		end read_factor;
+		
+		procedure read_factor1 (e: out expression) is
+			t: un_op;
+			x: character;
+			n: integer;
+		begin
+			if c='(' then
+				get(f,c); read_expr(e);
+				if c/=')' then raise syntax_error; end if;
+				get(f,c);
+			elsif 'a'<=c and c<='z' then
+				x:= c;
+				t:= scan_id;
+				if t=neg then
+					e:= b_var(x);
+				else
+					if c/='(' then raise syntax_error; end if;
+					get(f,c);
+					read_expr(e);
+					if c/=')' then raise syntax_error; end if;
+					get(f,c);
+					e:= b_un_op(t,e);
+				end if;
+			elsif '0'<=c and c<'9' then
+				n:= scan_num;
+				e:= b_constant(n);
+			else
+				raise syntax_error;
+			end if;
+		end read_factor1;
+		
+		function scan_id return un_op is
+		begin
+			if c='n' then
+				get(f,c);
+				if c='e' then
+					get(f,c);
+					if c='g' then
+						return t=neg;
+					else raise syntax_error; end if;
+				else raise syntax_error; end if;	
+			elsif c='s' then
+				get(f,c);
+				if c='i' then
+					get(f,c);
+					if c='n' then
+						return t=sin;
+					else raise syntax_error; end if;
+				else raise syntax_error; end if;
+			elsif c='c' then
+				get(f,c);
+				if c='o' then
+					get(f,c);
+					if c='s' then
+						return t=cos;
+					else raise syntax_error; end if;
+				else raise syntax_error; end if;
+			elsif c='e' then
+				get(f,c);
+				if c='x' then
+					get(f,c);
+					if c='p' then
+						return t=exp;
+					else raise syntax_error; end if;
+				else return syntax_error; end if;
+			elsif c='l' then
+				get(f,c);
+				if c='n' then
+					return t=ln;
+				else raise syntax_error; end if;
+			else raise syntax_error; end if;
+		end sca_id;
+		
+		function scan_num return integer is
+		begin
+			return character'Val(c);
+		end if;
+	begin
+		get(f,c); read_expr(e);
+		if c/=';' then raise syntax_error; end if;
+	exception
+		when syntax_error => e:= b_null; raise;
+	end read;
+	
+	function derive (e: in expression; x: in character) return expression is
+		de: expression;
+	begin
+		case e_type(e) is
+			when e_null => de:= b_null;
+			when e_const => de:= b_constant(0);
+			when e_var => de:= derive_var(e, x);
+			when e_un => de:= derive_un (e, x);
+			when e_bin => de:= derive_bin(e,x);
+		end case;
+		return de;
+	end derive;

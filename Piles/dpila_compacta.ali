@@ -1,0 +1,43 @@
+V "GNAT Lib v4.6"
+P ZX
+R nnnnnnnnnnnnnnnnnnvnnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+
+U dpila_compacta%b	dpila_compacta.adb	7c520e4a NE OO PK GE IL
+
+U dpila_compacta%s	dpila_compacta.ads	fae1682a BN NE OO PU PK GE IL
+
+D dpila_compacta.ads	20150214115020 fae1682a
+D dpila_compacta.adb	20150214115100 86b36660
+D system.ads		20140416172212 2d1a1afa
+X 1 dpila_compacta.ads
+2+14 item 13r51 15r48 19r64 2|8r48 25r43
+3i9 max{natural} 18r44
+4k9*dpila_compacta 2z14 3z9 25l5 25e19 2|1b14 39l5 39t19
+7R14*stack 12r35 13r38 14r38 15r34 16r34 21c14 24e19 2|2r33 8r35 17r34 25r29
+. 34r34
+9X9*bad_use 2|22r48 31r48
+10X9*space_overflow 2|14r48
+12U19*empty 12<28 2|2b19 6l13 6t18
+12r28 s{7R14} 2|2b26 3m34
+13U19*push 13=28 13>45 2|8b19 15l13 15t17
+13r28 s{7R14} 2|8b25 9m38 10m34
+13*45 x{2+14} 2|8b42 12r33
+14U19*pop 14=28 2|17b19 23l13 23t16
+14r28 s{7R14} 2|17b24 18m34
+15V18*top{2+14} 15>28 2|25b18 32l13 32t16
+15r28 s{7R14} 2|25b23 26r38 27r34
+16V18*is_empty{boolean} 16>28 2|34b18 38l13 38t21
+16r28 s{7R14} 2|34b28 35r34
+18I14 index<integer> 19r34 19r49 23r20 2|3r20 10r20 18r20 27r20 35r20
+19A14 mem_space(2+14)<18I14> 22r20 2|9r20 26r20
+22a17 a{19A14} 2|9m40 26m40
+23i17 n{18I14} 2|3m36 10m36 18m36 27m36 35m36
+X 2 dpila_compacta.adb
+3i17 n{1|18I14} 5r17
+9a17 a{1|19A14} 12r26
+10i17 n{1|18I14} 12r17 12r21 12r28
+18i17 n{1|18I14} 20r17 20r21
+26a17 a{1|19A14} 29r24
+27i17 n{1|18I14} 29r26
+35i17 n{1|18I14} 37r24
+

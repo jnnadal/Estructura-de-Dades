@@ -1,0 +1,55 @@
+V "GNAT Lib v4.6"
+P ZX
+R nnnvnnnnnnnnnnnnnnvnnvnnnnnnnnnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+
+U darbrebinari_punters%b  darbrebinari_punters.adb  b3b96e6b NE OO PK GE IL
+
+U darbrebinari_punters%s  darbrebinari_punters.ads  550678a9 BN EE NE OO PK GE IL
+
+D darbrebinari_punters.ads  20150215174356 550678a9
+D darbrebinari_punters.adb  20150215175115 e6bf16c2
+D system.ads		20140416172212 2d1a1afa
+X 1 darbrebinari_punters.ads
+2+14 item 11r65 12r48 19r22 2|14r61 25r44
+3k9*darbrebinari_punters 2z14 25l5 25e25 2|1b14 50l5 50t25
+4R14*tree 9r36 10r35 11r36 11r53 12r35 13r35 13r49 14r35 14r49 22c14 24e19
+. 2|2r33 8r34 14r33 14r49 25r31 33r31 33r45 42r32 42r46
+6X9*bad_use 2|30r48 39r48 48r48
+7X9*space_overflow 2|22r45
+9U19*empty 9<29 2|2b19 6l13 6t18
+9r29 t{4R14} 2|2b26 3m34
+10V19*is_empty{boolean} 10>29 2|8b18 12l13 12t21
+10r29 t{4R14} 2|8b28 9r34
+11U19*graft 11<29 11>42 11>46 11>59 2|14b19 23l13 23t18
+11r29 t{4R14} 2|14b26 15m35
+11r42 lt{4R14} 2|14b39 16r35
+11r46 rt{4R14} 2|14b42 17r35
+11*59 x{2+14} 2|14b55 20r26
+12U19*root 12>29 12<41 2|25b19 31l13 31t17
+12r29 t{4R14} 2|25b25 26r34
+12*41 x{2+14} 2|25b37 28m17
+13U19*left 13>29 13<41 2|33b19 40l13 40t17
+13r29 t{4R14} 2|33b25 34r35
+13r41 lt{4R14} 2|33b37 35m35
+14U19*right 14>29 14<41 2|42b19 49l13 49t18
+14r29 t{4R14} 2|42b26 43r35
+14r41 rt{4R14} 2|42b38 44m35
+16R14 node 17r30 18c14 21e19 2|19r25
+17P14 pnode(16R14) 20r22 23r23 2|3r20 9r20 15r21 16r21 17r21 26r20 34r21
+. 35r21 43r21 44r21
+19*17 x{2+14} 2|28r23
+20p17 l{17P14} 2|37r24
+20p19 r{17P14} 2|46r24
+23p17 root{17P14} 2|3m36 9m36 15m37 16m38 17m38 26m36 34m37 35m38 43m37 44m38
+X 2 darbrebinari_punters.adb
+3p17 p{1|17P14} 5r17
+9p17 p{1|17P14} 11r24
+15p17 p{1|17P14} 19r17 20r17
+16p17 pl{1|17P14} 20r28
+17p17 pr{1|17P14} 20r31
+26p17 p{1|17P14} 28r21
+34p17 p{1|17P14} 37r22
+35p17 pl{1|17P14} 37r17
+43p17 p{1|17P14} 46r22
+44p17 pr{1|17P14} 46r17
+

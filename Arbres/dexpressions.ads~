@@ -1,0 +1,25 @@
+package dexpressions is
+	type expression_type is (e_null, e_const, e_var, e_un, e_bin);
+	type un_op           is (neg, sin, cos, exp, ln);
+	type bin_op			 is (add, sub, prod, quot, power);
+	
+	type expression is private;
+	
+	--Operacions de construcció
+	function b_null                                            return expression;
+	function b_constant (n: in integer)                        return expression;
+	function b_var      (x: in character)                      return expression;
+	function b_un_op    (op: in un_op; esb: in expression)     return expression;
+	function b_bin_op   (op: in bin_op; e1, e2: in expression) return expression;
+	
+	--Operacions per llegir components
+	function e_type (e: in expression) return expression_type;
+	function g_const(e: in expression) return integer;
+	function g_var  (e: in expression) return character;
+	procedure g_un (e: in expression; op: out un_op; esb: out expression);
+	procedure g_bin(e: in expression; op: out bin_op; esb1, esb2: out expression);
+private
+	type node;
+	type expression is access node;
+	subtype pnode is expression;
+end dexpressions;

@@ -1,0 +1,3 @@
+generic
+	type item is private;
+package

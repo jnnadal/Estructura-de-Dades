@@ -1,0 +1,35 @@
+package body dexpressions is
+	function b_null return expression is
+		p: pnode;
+	begin
+		p:= new node'(e_null);
+		return p;
+	end b_null;
+	
+	function b_constant (n: in integer) return expression is
+		p: pnode;
+	begin
+		p:= new node'(e_const, n);
+		return p;
+	end b_constant;
+	
+	function b_var (x: in character) return expression is
+		p: pnode;
+	begin
+		p:= new node'(e_var, x);
+		return p;
+	end b_var;
+	
+	function b_un_op (op: in un_op; esb: in expression) return expression is
+		p: pnode;
+	begin
+		p:= new node'(e_un,op,esb);
+		return p;
+	end b_un_op;
+	
+	function b_bin_op (op: in bin_op; esb1, esb2: in expression) return expression is
+		p: pnode;
+	begin
+		p:= new node'(e_bin, op, esb1, esb2);
+		return p;
+	end b_bin_op;

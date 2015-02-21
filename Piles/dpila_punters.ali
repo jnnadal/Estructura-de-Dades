@@ -1,0 +1,42 @@
+V "GNAT Lib v4.6"
+P ZX
+R nnnvnnnnnnnnnnnnnnvnnvnnnnnnnnnvnnnnnnnnnnnnnnnnnnnnnnnnnnvnnnnnnnnnnnnnnnnnnnnn
+
+U dpila_punters%b	dpila_punters.adb	9c63719c NE OO PK GE IL
+
+U dpila_punters%s	dpila_punters.ads	183d02fe BN NE OO PU PK GE IL
+
+D dpila_punters.ads	20150214120045 183d02fe
+D dpila_punters.adb	20150214122147 845e7362
+D system.ads		20140416172212 2d1a1afa
+X 1 dpila_punters.ads
+2+14 item 12r51 14r48 20r23 2|14r43 22r48
+3k9*dpila_punters 2z14 26l5 26e18 2|1b14 40l5 40t18
+6R14*stack 11r35 12r38 13r38 14r34 15r34 23c14 25e19 2|2r33 8r34 14r29 22r35
+. 33r34
+8X9*bad_use 2|19r48 38r48
+9X9*space_overflow 2|30r48
+11U19*empty 11<28 2|2b19 6l13 6t18
+11r28 s{6R14} 2|2b26 3m36
+12U19*push 12=28 12>45 2|22b19 31l13 31t17
+12r28 s{6R14} 2|22b25 23m36
+12*45 x{2+14} 2|22b42 27r26
+13U19*pop 13=28 2|33b19 39l13 39t16
+13r28 s{6R14} 2|33b24 34m36
+14V18*top{2+14} 14>28 2|14b18 20l13 20t16
+14r28 s{6R14} 2|14b23 15r36
+15V18*is_empty{boolean} 15>28 2|8b18 12l13 12t21
+15r28 s{6R14} 2|8b28 9r36
+17R14 cell 18r30 19c14 22e19 2|26r25
+18P14 pcell(17R14) 21r23 24r22 2|3r22 9r22 15r22 23r22 24r20 34r22
+20*17 x{2+14} 2|17r28
+21p17 next{18P14} 2|36r27
+24p17 top{18P14} 2|3m38 9m38 15m38 23m38 34m38
+X 2 dpila_punters.adb
+3p17 top{1|18P14} 5r17
+9p17 top{1|18P14} 11r24
+15p17 top{1|18P14} 17r24
+23p17 top{1|18P14} 27r29 28r17
+24p17 r{1|18P14} 26m17 27r17 28r23
+34p17 top{1|18P14} 36r17 36r23
+

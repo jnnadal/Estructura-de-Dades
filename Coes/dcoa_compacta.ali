@@ -1,0 +1,51 @@
+V "GNAT Lib v4.6"
+P ZX
+R nnnnnnnnnnnnnnnnnnnnnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+
+U dcoa_compacta%b	dcoa_compacta.adb	302958b2 NE OO PK GE IL
+
+U dcoa_compacta%s	dcoa_compacta.ads	db57b413 BN NE OO PU PK GE IL
+
+D dcoa_compacta.ads	20150214183842 db57b413
+D dcoa_compacta.adb	20150214184819 eb7eeca1
+D system.ads		20140416172212 2d1a1afa
+X 1 dcoa_compacta.ads
+2+14 item 12r54 14r51 18r44 2|11r48 28r50
+3i9 max{natural} 17r44 2|16r22
+4k9*dcoa_compacta 2z14 3z9 24l5 24e18 2|1b14 42l5 42t18
+6R14*queue 11r38 12r41 13r41 14r37 15r37 19c14 23e19 2|3r34 11r35 20r41 28r36
+. 37r35
+8X9*bad_use 2|24r35 33r35
+9X9*space_overflow 2|16r37
+11U19*empty 11<30 2|3b19 9l13 9t18
+11r30 qu{6R14} 2|3b26 4m34 5m34 6m36
+12U19*put 12=30 12>48 2|11b19 18l13 18t16
+12r30 qu{6R14} 2|11b24 12m34 13m38 14m36
+12*48 x{2+14} 2|11b42 17r23
+13U19*rem_first 13=30 2|20b19 26l13 26t22
+13r30 qu{6R14} 2|20b30 21m34 22m36
+14V19*get_first{2+14} 14>30 2|28b18 35l13 35t22
+14r30 qu{6R14} 2|28b29 29r38 30r34 31r36
+15V19*is_empty{boolean} 15>30 2|37b18 41l13 41t21
+15r30 qu{6R14} 2|37b28 38r36
+17I14 index<integer> 18r34 21r22 2|2r22 2r30 4r20 5r20 12r20 21r20 30r20
+18A14 mem_space(2+14)<17I14> 20r22 2|13r20 29r20
+20a17 a{18A14} 2|13m41 29m41
+21i17 p{17I14} 2|4m37 12m37
+21i19 q{17I14} 2|5m37 21m37 30m37
+22i17 n{natural} 2|6m39 14m39 22m39 31m39 38m39
+X 2 dcoa_compacta.adb
+2i9 mx{1|17I14} 17r36 25r27
+4i17 p{1|17I14} 8r17
+5i17 q{1|17I14} 8r24
+6i17 n{natural} 8r31
+12i17 p{1|17I14} 17r19 17r26 17r30
+13a17 a{1|18A14} 17r17
+14i17 n{natural} 16r20 17r42 17r46
+21i17 q{1|17I14} 25r17 25r21
+22i17 n{natural} 24r20 25r33 25r37
+29a17 a{1|18A14} 34r24
+30i17 q{1|17I14} 34r26
+31i17 n{natural} 33r20
+38i17 n{natural} 40r24
+

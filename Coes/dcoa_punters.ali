@@ -1,0 +1,47 @@
+V "GNAT Lib v4.6"
+P ZX
+R nnnvnnnnnnnnnnnnnnvnnvnnnnnnnnnvnnnnnnnnnnnnnnnnnnnnnnnnnnvnnnnnnnnnnnnnnnnnnnnn
+
+U dcoa_punters%b	dcoa_punters.adb	98015bd5 NE OO PK GE IL
+
+U dcoa_punters%s	dcoa_punters.ads	0792bbba BN NE OO PU PK GE IL
+
+D dcoa_punters.ads	20150214190623 0792bbba
+D dcoa_punters.adb	20150215111810 9f93e06f
+D system.ads		20140416172212 2d1a1afa
+X 1 dcoa_punters.ads
+2+14 item 11r54 13r51 19r20 2|15r50 23r48
+3k9*dcoa_punters 2z14 25l5 25e17 2|1b14 48l5 48t17
+5R14*queue 10r38 11r41 12r41 13r37 14r37 22c14 24e19 2|2r34 9r35 15r36 23r35
+. 39r41
+7X9*bad_use 2|20r48 46r48
+8X9*space_overflow 2|36r45
+10U19*empty 10<30 2|2b19 7l13 7t18
+10r30 qu{5R14} 2|2b26 3m34 4m34
+11U19*put 11=30 11>48 2|23b19 37l13 37t16
+11r30 qu{5R14} 2|23b24 25m34 26m34
+11*48 x{2+14} 2|23b42 29r26
+12U19*rem_first 12=30 2|39b19 47l13 47t22
+12r30 qu{5R14} 2|39b30 40m34 41m34
+13V19*get_first{2+14} 13>30 2|15b18 21l13 21t22
+13r30 qu{5R14} 2|15b29 16r34
+14V19*is_empty{boolean} 14>30 2|9b18 13l13 13t21
+14r30 qu{5R14} 2|9b28 10r34
+16R14 cell 17r30 18c14 21e19 2|28r25
+17P14 pcell(16R14) 20r23 23r22 2|3r20 4r20 10r20 16r20 24r20 25r20 26r20
+. 40r20 41r20
+19*17 x{2+14} 2|18r26
+20p17 next{17P14} 2|33m27 43r23
+23p17 p{17P14} 2|3m37 25m37 40m37
+23p19 q{17P14} 2|4m37 10m37 16m37 26m37 41m37
+X 2 dcoa_punters.adb
+3p17 p{1|17P14} 6r17
+4p17 q{1|17P14} 6r27
+10p17 q{1|17P14} 12r24
+16p17 q{1|17P14} 18r24
+24p17 r{1|17P14} 28m17 29r17 31r29 31r36 33r34 33r41
+25p17 p{1|17P14} 31r25 33r25 33r37
+26p17 q{1|17P14} 30r20 31r32
+40p17 p{1|17P14} 44r32
+41p17 q{1|17P14} 43r17 43r21 44r20
+

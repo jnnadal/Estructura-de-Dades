@@ -1,0 +1,39 @@
+package body dpila_compacta is
+	procedure empty (s: out stack) is
+		n: index renames s.n;
+	begin
+		n:= 0;
+	end empty;
+	
+	procedure push (s: in out stack; x: in item) is
+		a: mem_space renames s.a;
+		n: index renames s.n;
+	begin
+		n:= n+1; a(n):= x;
+	exception
+		when constraint_error => raise space_overflow;
+	end push;
+	
+	procedure pop (s: in out stack) is
+		n: index renames s.n;
+	begin
+		n:= n-1;
+	exception
+		when constraint_error => raise bad_use;
+	end pop;
+	
+	function top (s: in stack) return item is
+		a: mem_space renames s.a;
+		n: index renames s.n;
+	begin
+		return a(n);
+	exception
+		when constraint_error => raise bad_use;
+	end top;
+	
+	function is_empty (s: in stack) return boolean is
+		n: index renames s.n;
+	begin
+		return n=0;
+	end if_empty;
+end dpila_compacta;

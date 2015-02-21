@@ -1,0 +1,48 @@
+package body dcoa_punters is
+	procedure empty (qu: out queue) is
+		p: pcell renames qu.p;
+		q: pcell renames qu.q;
+	begin
+		p:= null; q:= null;
+	end empty;
+	
+	function is_empty (qu: in queue) return boolean is
+		q: pcell renames qu.q;
+	begin
+		return q=null;
+	end is_empty;
+	
+	function get_first (qu: in queue) return item is
+		q: pcell renames qu.q;
+	begin
+		return q.x;
+	exception
+		when constraint_error => raise bad_use;
+	end get_first;
+	
+	procedure put (qu: in out queue; x: in item) is
+		r: pcell;
+		p: pcell renames qu.p;
+		q: pcell renames qu.q;
+	begin
+		r:= new cell;
+		r.all:= (x,null);
+		if q=null then
+			p:= r; q:= r;
+		else
+			p.next:= r; p:= r;
+		end if;
+	exception
+		when storage_error => raise space_overflow;
+	end put;
+	
+	procedure rem_first (qu: in out queue) is
+		p: pcell renames qu.p;
+		q: pcell renames qu.q;
+	begin
+		q:= q.next;
+		if q=null then p:= null; end if;
+	exception
+		when constraint_error => raise bad_use;
+	end rem_first; 
+end dcoa_punters;

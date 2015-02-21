@@ -1,0 +1,20 @@
+generic
+	type item is private;
+	max: natural;
+package dcoa_cursors is
+	type queue is limited private;
+	
+	bad_use: 		exception;
+	space_overflow: exception;
+	
+	procedure empty     (qu: out queue);
+	procedure put       (qu: in out queue; x: in item);
+	procedure rem_first (qu: in out queue);
+	function  get_first (qu: in queue) return item;
+	function  is_empty  (qu: in queue) return boolean;
+private
+	type index is new integer range 0..max;
+	type queue is record
+		p,q: index:= 0;
+	end record;
+end dcoa_cursors;
