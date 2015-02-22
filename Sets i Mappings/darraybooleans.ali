@@ -1,0 +1,35 @@
+V "GNAT Lib v4.6"
+P ZX
+R nnnnnnnnnnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+
+U darraybooleans%b	darraybooleans.adb	94a8b1f5 NE OO PK GE IL
+
+U darraybooleans%s	darraybooleans.ads	eb9a9105 BN EE NE OO PK GE IL
+
+D darraybooleans.ads	20150222105143 eb9a9105
+D darraybooleans.adb	20150222105054 7f3220f0
+D system.ads		20140416172212 2d1a1afa
+X 1 darraybooleans.ads
+2E14 elem 9r50 10r46 11r50 14r27 2|4r26 7r48 12r45 17r42 23r20 25r21 26r38
+. 26r57
+3k9*darraybooleans 2z14 16l5 16e19 2|1b14 29l5 29t19
+4A14*set(boolean) 8r36 9r39 10r35 11r39 12r35 14c14 15r21 2|2r33 7r37 12r34
+. 17r31 22r34
+6X9*space_overflow
+8U19*empty 8<29 2|2b19 5l13 5t18
+8a29 s{4A14} 2|2b26 4m36
+9U19*put 9=29 9>44 2|12b19 15l13 15t16
+9a29 s{4A14} 2|12b24 14m17
+9*44 x{2E14} 2|12b39 14r19
+10V19*is_in{boolean} 10>29 10>40 2|17b18 20l13 20t18
+10a29 s{4A14} 2|17b25 19r24
+10*40 x{2E14} 2|17b36 19r26
+11U19*remove 11=29 11>44 2|7b19 10l13 10t19
+11a29 s{4A14} 2|7b27 9m17
+11*44 x{2E14} 2|7b42 9r19
+12V19*is_empty{boolean} 12>29 2|22b18 28l13 28t21
+12a29 s{4A14} 2|22b28 26r27 27r28
+X 2 darraybooleans.adb
+4*21 x{1|2E14} 4r38
+23*17 x{1|2E14} 25m17 26r29 26r36 26m53 26r67 27r30
+
