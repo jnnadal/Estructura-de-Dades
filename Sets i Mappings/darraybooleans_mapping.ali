@@ -1,0 +1,52 @@
+V "GNAT Lib v4.6"
+P ZX
+R nnnnnnnnnnnnnnnnnnnnnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+
+U darraybooleans_mapping%b  darraybooleans_mapping.adb  dbb7768a NE OO PK GE IL
+
+U darraybooleans_mapping%s  darraybooleans_mapping.ads  706e679e BN EE NE OO PK GE IL
+
+D darraybooleans_mapping.ads  20150222113208 706e679e
+D darraybooleans_mapping.adb  20150222113229 abd91114
+D system.ads		20140416172212 2d1a1afa
+X 1 darraybooleans_mapping.ads
+2E14 key 12r48 13r44 14r48 15r48 17r33 18r33 2|5r26 8r45 16r48 24r41 32r48
+3+14 item 12r59 13r56 15r59 18r41 2|8r56 16r59 24r53
+4k9*darraybooleans_mapping 2z14 3z14 25l5 25e27 2|1b14 38l5 38t27
+5R14*set 11r34 12r37 13r33 14r37 15r37 20c14 23e19 2|2r33 8r34 16r37 24r30
+. 32r37
+7X9*already_exists 2|12r36
+8X9*does_not_exist 2|20r40 28r40 35r40
+9X9*space_overflow
+11U19*empty 11<27 2|2b19 6l13 6t18
+11r27 s{5R14} 2|2b26 3m38
+12U19*put 12=27 12>42 12>53 2|8b19 14l13 14t16
+12r27 s{5R14} 2|8b24 9m38 10m37
+12*42 k{2E14} 2|8b39 12r22 13r19 13r32
+12*53 x{3+14} 2|8b50 13r37
+13U19*get 13>27 13>38 13<49 2|24b19 30l13 30t16
+13r27 s{5R14} 2|24b24 25r38 26r37
+13*38 k{2E14} 2|24b35 28r26 29r23
+13*49 x{3+14} 2|24b46 29m17
+14U19*remove 14=27 14>42 2|32b19 37l13 37t19
+14r27 s{5R14} 2|32b27 33m38
+14*42 k{2E14} 2|32b42 35r26 36r19
+15U19*update 15=27 15>42 15>53 2|16b19 22l13 22t19
+15r27 s{5R14} 2|16b27 17r38 18m37
+15*42 k{2E14} 2|16b42 20r26 21r19
+15*53 x{3+14} 2|16b53 21r24
+17A14 existence(boolean)<2E14> 21r20 2|3r20 9r20 17r20 25r20 33r20
+18A14 contents(3+14)<2E14> 22r20 2|10r20 18r20 26r20
+21a17 e{17A14} 2|3m40 9m40 17m40 25m40 33m40
+22a17 c{18A14} 2|10m39 18m39 26m39
+X 2 darraybooleans_mapping.adb
+3a17 e{1|17A14} 5r35
+5*21 k{1|2E14} 5r37
+9a17 e{1|17A14} 12r20 13r17
+10a17 c{1|18A14} 13r30
+17a17 e{1|17A14} 20r24
+18a17 c{1|18A14} 21r17
+25a17 e{1|17A14} 28r24
+26a17 c{1|18A14} 29r21
+33a17 e{1|17A14} 35r24 36r17
+

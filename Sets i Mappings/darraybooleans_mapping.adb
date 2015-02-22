@@ -10,7 +10,7 @@ package body darraybooleans_mapping is
 		c: contents renames s.c;
 	begin
 		if e(k) then raise already_exists; end if;
-		e(k):= true; e(c):= x;
+		e(k):= true; c(k):= x;
 	end put;
 	
 	procedure update (s: in out set; k: in key; x: in item) is

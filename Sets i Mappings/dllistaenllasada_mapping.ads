@@ -1,7 +1,8 @@
 generic
-	type key is (<>);
+	type key is private;
 	type item is private;
-package darraybooleans_mapping is
+	with function "<" (k1, k2: in key) return boolean;
+package dllistaenllasada_mapping is
 	type set is limited private;
 	
 	already_exists:  exception;
@@ -14,12 +15,14 @@ package darraybooleans_mapping is
 	procedure remove (s: in out set; k: in key);
 	procedure update (s: in out set; k: in key; x: in item);
 private
-	type existence is array(key) of boolean;
-	type contents  is array(key) of item;
-	
-	type set is record
-		e: existence;
-		c: contents;
+	type cell;
+	type pcell is access cell;
+	type cell is record
+		k: key;
+		x: item;
+		next: pcell;
 	end record;
-
-end darraybooleans_mapping;
+	type set is record
+		first: pcell;
+	end record;
+end dllistaenllasada_mapping;
